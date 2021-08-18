@@ -1,3 +1,4 @@
+import 'package:app1/Navigation/NavigationBar.dart';
 import 'package:flutter/material.dart';
 
 class CreateNotification extends StatefulWidget {
@@ -74,6 +75,8 @@ class _CreateNotificationState extends State<CreateNotification> {
                         style: TextStyle(fontSize: 15.0),
                       ),
                       onPressed: () {
+                        showAlertDialog(context);
+
                         // Navigator.push(
                         //   context,
                         //   MaterialPageRoute(
@@ -85,11 +88,23 @@ class _CreateNotificationState extends State<CreateNotification> {
                             _Controller_Notification.text;
                         String api_notification_header =
                             _Controller_Header.text;
-                        print(Api_notification_type);
-                        print(api_notification_header);
+                        // print(Api_notification_type);
+                        // print(api_notification_header);
+                        send(Api_notification_type, api_notification_header);
                       },
                     ),
                   ),
+                ),
+              ),
+              Center(
+                child: TextButton(
+                  style: ButtonStyle(
+                    //Background Color
+                    elevation: MaterialStateProperty.all(3), //Defines Elevation
+                    //Defines shadowColor
+                  ),
+                  onPressed: () {},
+                  child: Text('bla'),
                 ),
               ),
             ],
@@ -98,4 +113,53 @@ class _CreateNotificationState extends State<CreateNotification> {
       ),
     );
   }
+}
+
+void showAlertDialog(BuildContext context) {
+  Widget yesButton = TextButton(
+    child: Text("Yes"),
+    onPressed: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => NavigationBar(),
+        ),
+      );
+    },
+  );
+  Widget nobutton = TextButton(
+    child: Text("No"),
+    onPressed: () {
+      Navigator.of(context).pop();
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => CreateNotification(),
+      //   ),
+      // );
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Notification"),
+    content: Text("Are you what to Create the Notification"),
+    actions: [
+      nobutton,
+      yesButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+void send(one, two) {
+  print(one);
+  print(two);
 }

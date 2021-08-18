@@ -1,3 +1,4 @@
+import 'package:app1/LoginPage.dart';
 import 'package:app1/Notification/ScreenNotification.dart';
 import 'package:app1/SignOut/SingOutScreen.dart';
 import 'package:app1/WorkOrder/ScreenWorkOrder.dart';
@@ -23,6 +24,14 @@ class _NavigationBarState extends State<NavigationBar> {
     setState(() {
       _selectedIndex = index;
     });
+    if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginPage(),
+        ),
+      );
+    }
   }
 
   @override
@@ -63,6 +72,7 @@ class _NavigationBarState extends State<NavigationBar> {
               Icons.school,
             ),
             label: 'Team',
+
             // backgroundColor: Colors.red
           ),
         ],
